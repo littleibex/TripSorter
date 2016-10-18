@@ -1,0 +1,1 @@
+- Error handling for invalid inputs for each BoardingCard class?
