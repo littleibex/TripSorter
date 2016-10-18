@@ -15,8 +15,16 @@ class BoardingCardFactory
     public static function createBoardingCard(array $data)
     {
         switch ($data[0]) {
+            case 'airport_bus':
+                return new AirportBusBoardingCard($data);
+                break;
+
             case 'train':
                 return new TrainBoardingCard($data);
+                break;
+
+            case 'flight':
+                return new FlightBoardingCard($data);
                 break;
 
             default:

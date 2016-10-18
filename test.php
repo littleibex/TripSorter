@@ -2,6 +2,10 @@
 
 //header('Content-Type: text/plain');
 
+$test;
+var_dump((string)$test);
+die();
+
 $arr   = [];
 $pivot = reset($arr);
 $test  = array_merge(array_reverse([]), [$pivot], []);

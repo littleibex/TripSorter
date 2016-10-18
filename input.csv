@@ -1,4 +1,4 @@
-train,Stockholm,New York JFK,81D,48E
-train,Barcelona,Gerona Airport,79B,46C
-train,Gerona Airport,Stockholm,80C,47D
 train,Madrid,Barcelona,78A,45B
+airport_bus,Barcelona,Gerona Airport,
+flight,Gerona Airport,Stockholm,SK455,45B,3A,344
+flight,Stockholm,New York JFK,SK22,22,7B,

@@ -3,28 +3,16 @@
 namespace PropertyFinder\BoardingCards;
 
 
-class TrainBoardingCard extends BoardingCard
+class AirportBusBoardingCard extends BoardingCard
 {
 
-    protected $trainNo;
     protected $seatNo;
 
     public function __construct(array $data)
     {
         parent::__construct($data);
 
-        $this->_setTrainNumber($data);
         $this->_setSeatNumber($data);
-    }
-
-    public function getTrainNumber()
-    {
-        return $this->trainNo;
-    }
-
-    protected function _setTrainNumber(array $data)
-    {
-        $this->trainNo = isset($data[3]) ? $data[3] : '';
     }
 
     public function getSeatNumber()
@@ -39,14 +27,13 @@ class TrainBoardingCard extends BoardingCard
 
     protected function _setSeatNumber(array $data)
     {
-        $this->seatNo = isset($data[4]) ? $data[4] : '';
+        $this->seatNo = isset($data[3]) ? $data[3] : '';
     }
 
     public function getMessage()
     {
         return sprintf(
-            'Take train %s from %s to %s. %s',
-            $this->getTrainNumber(),
+            'Take the airport bus from %s to %s. %s',
             $this->getSource(),
             $this->getDestination(),
             $this->getSeatNumberStatement()

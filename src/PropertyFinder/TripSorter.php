@@ -2,7 +2,7 @@
 
 namespace PropertyFinder;
 
-use PropertyFinder\BoardingCards\BoardingCardInterface;
+use PropertyFinder\BoardingCards\BoardingCard;
 
 class TripSorter
 {
@@ -34,9 +34,9 @@ class TripSorter
         $this->reset();
     }
 
-    protected function populatePreviousCards(BoardingCardInterface $pivotCard)
+    protected function populatePreviousCards(BoardingCard $pivotCard)
     {
-        /** @var BoardingCardInterface $card */
+        /** @var BoardingCard $card */
         foreach ($this->cards as $key => $card) {
             if ($card->getDestination() === $pivotCard->getSource()) {
                 $this->prev[] = $card;
@@ -47,9 +47,9 @@ class TripSorter
         }
     }
 
-    protected function populateNextCards(BoardingCardInterface $pivotCard)
+    protected function populateNextCards(BoardingCard $pivotCard)
     {
-        /** @var BoardingCardInterface $card */
+        /** @var BoardingCard $card */
         foreach ($this->cards as $key => $card) {
             if ($card->getSource() === $pivotCard->getDestination()) {
                 $this->next[] = $card;
