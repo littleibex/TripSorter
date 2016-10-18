@@ -2,7 +2,7 @@
 
 namespace PropertyFinder\CardReaders;
 
-interface CardReaderInterface
+interface CardReader
 {
 
     public function getCards();

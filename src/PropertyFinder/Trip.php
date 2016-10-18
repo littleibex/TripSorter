@@ -4,14 +4,14 @@ namespace PropertyFinder;
 
 use Countable;
 use Iterator;
-use PropertyFinder\CardReaders\CardReaderInterface;
+use PropertyFinder\CardReaders\CardReader;
 
 class Trip implements Iterator, Countable
 {
 
     protected $cards;
 
-    public function __construct(CardReaderInterface $reader)
+    public function __construct(CardReader $reader)
     {
         $this->cards = $reader->getCards();
 

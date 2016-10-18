@@ -5,7 +5,7 @@ namespace PropertyFinder\CardReaders;
 use InvalidArgumentException;
 use PropertyFinder\BoardingCards\BoardingCardFactory;
 
-class CsvCardReader implements CardReaderInterface
+class CsvCardReader implements CardReader
 {
 
     protected $file;
