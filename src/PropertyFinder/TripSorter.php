@@ -7,63 +7,72 @@ use PropertyFinder\BoardingCards\BoardingCard;
 class TripSorter
 {
 
-    protected $cards;
-    protected $prev;
-    protected $next;
-
-    public function __construct()
-    {
-        $this->prev = [];
-        $this->next = [];
-    }
-
     public function sort(array &$cards)
     {
         if (!$cards) {
             return;
         }
 
-        $this->cards = $cards;
+        $sources      = [];
+        $destinations = [];
 
-        $pivot = reset($this->cards);
-        $this->populatePreviousCards($pivot);
-        $this->populateNextCards($pivot);
-
-        $cards = array_merge(array_reverse($this->prev), [$pivot], $this->next);
-
-        $this->reset();
-    }
-
-    protected function populatePreviousCards(BoardingCard $pivotCard)
-    {
         /** @var BoardingCard $card */
-        foreach ($this->cards as $key => $card) {
-            if ($card->getDestination() === $pivotCard->getSource()) {
-                $this->prev[] = $card;
-                unset($this->cards[$key]);
-                $this->populatePreviousCards($card);
-                break;
+        foreach ($cards as $card) {
+            $sources[]      = $card->getSource();
+            $destinations[] = $card->getDestination();
+        }
+
+        asort($sources);
+        asort($destinations);
+
+        $map   = [];
+        $start = null;
+        $end   = null;
+
+        while (null !== ($sourceKey = key($sources)) && null !== ($destinationKey = key($destinations))) {
+            $sourceValue      = current($sources);
+            $destinationValue = current($destinations);
+
+            if ($sourceValue === $destinationValue) {
+                $map[$destinationKey] = $sourceKey;
+
+                next($sources);
+                next($destinations);
+            } else {
+                $peekSourceValue = next($sources);
+                false === $peekSourceValue ? end($sources) : prev($sources);
+
+                $peekDestinationValue = next($destinations);
+                false === $peekDestinationValue ? end($destinations) : prev($destinations);
+
+                if ($sourceValue !== $peekDestinationValue) {
+                    $start = $sourceKey;
+                    unset($sources[$sourceKey]);
+                }
+
+                if ($destinationValue !== $peekSourceValue) {
+                    $end = $destinationKey;
+                    unset($destinations[$destinationKey]);
+                }
             }
         }
-    }
 
-    protected function populateNextCards(BoardingCard $pivotCard)
-    {
-        /** @var BoardingCard $card */
-        foreach ($this->cards as $key => $card) {
-            if ($card->getSource() === $pivotCard->getDestination()) {
-                $this->next[] = $card;
-                unset($this->cards[$key]);
-                $this->populateNextCards($card);
-                break;
-            }
+        if (null === $start) {
+            end($map);
+            $start = key($map);
         }
-    }
 
-    protected function reset()
-    {
-        unset($this->cards);
-        unset($this->prev);
-        unset($this->next);
+        if (null === $end) {
+            $end = end($map);
+        }
+
+        while ($start !== $end) {
+            $sortedCards[] = $cards[$start];
+            $start         = $map[$start];
+        }
+
+        $sortedCards[] = $cards[$end];
+
+        $cards = $sortedCards;
     }
 }
