@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @const int INPUT_SIZE The number of boarding cards / legs in the journey.
+ */
 const INPUT_SIZE = 100000;
 
 header('Content-Type: text/plain');
