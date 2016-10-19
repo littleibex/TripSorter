@@ -7,7 +7,7 @@ use PropertyFinder\BoardingCards\BoardingCard;
 class TripSorter
 {
 
-    public function sort(array &$cards)
+    public static function sort(array &$cards)
     {
         if (!$cards) {
             return;

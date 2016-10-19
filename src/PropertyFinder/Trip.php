@@ -15,8 +15,7 @@ class Trip implements Iterator, Countable
     {
         $this->cards = $reader->getCards();
 
-        $tripSorter = new TripSorter();
-        $tripSorter->sort($this->cards);
+        TripSorter::sort($this->cards);
     }
 
     public function getCards()
