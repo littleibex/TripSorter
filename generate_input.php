@@ -54,4 +54,4 @@ if (($handle = fopen('large.csv', "w")) !== false) {
     throw new InvalidArgumentException('Failed to open CSV input file.');
 }
 
-echo 'Data written to large.csv file';
+echo 'Data written to large.csv file' . PHP_EOL;
