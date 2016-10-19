@@ -40,8 +40,8 @@ Cards | Time (in milliseconds)
 10 Cards | 0.2 
 100 Cards | 1 
 1000 Cards | 8 
-10000 Cards | 80 
-100000 Cards | 950 
+10,000 Cards | 80 
+100,000 Cards | 950 
 
 * The sorting algorithm is implemented in `\PropertyFinder\TripSorter`
 
