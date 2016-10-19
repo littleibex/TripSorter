@@ -1,5 +1,7 @@
 <?php
 
+header('Content-Type: text/plain');
+
 require 'vendor/autoload.php';
 
 use PropertyFinder\CardReaders\CsvCardReader;
@@ -18,11 +20,11 @@ $cardReader = new CsvCardReader('input.csv');
  *                 generate a description of how to complete the journey.
  */
 $trip = new Trip($cardReader);
-?>
 
-<ol>
-    <?php foreach ($trip as $card) { ?>
-        <li><?php echo htmlentities($card->getMessage()); ?></li>
-    <?php } ?>
-    <li>You have arrived at your final destination.</li>
-</ol>
+
+foreach ($trip as $i => $card) {
+    echo ($i + 1) . '. ' . $card->getMessage() . PHP_EOL;
+}
+if (isset($i)) {
+    echo ($i + 2) . '. You have arrived at your final destination.' . PHP_EOL;
+}
