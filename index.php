@@ -7,7 +7,8 @@ use PropertyFinder\Trip;
 
 /** @var \PropertyFinder\BoardingCards\BoardingCard $card */
 
-$trip = new Trip(new CsvCardReader('input.csv'));
+$cardReader = new CsvCardReader('input.csv');
+$trip       = new Trip($cardReader);
 ?>
 
 <ol>
