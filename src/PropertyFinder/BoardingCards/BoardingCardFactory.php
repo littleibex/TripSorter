@@ -9,9 +9,19 @@ class BoardingCardFactory
 
     private function __construct()
     {
-
+        // a factory constructor should never be invoked
     }
 
+    /**
+     * Boarding Card generation.
+     *
+     * @param array $data [0] => Mode of transportation.
+     *
+     * @throws InvalidArgumentException If the mode of transportation isn't "train",
+     *                                  "flight" or "airport_bus".
+     *
+     * @return BoardingCard
+     */
     public static function createBoardingCard(array $data)
     {
         switch ($data[0]) {
