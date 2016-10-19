@@ -11,6 +11,17 @@ class Trip implements Iterator, Countable
 
     protected $cards;
 
+    /**
+     * Trip constructor.
+     *
+     * Creates a new Trip. The card reader provides a set of boarding
+     * for a journey. This class can be used as an array to
+     * iterate from the beginning to the end of the
+     * journey. Each iteration returns a boarding
+     * card.
+     *
+     * @param CardReader $reader
+     */
     public function __construct(CardReader $reader)
     {
         $this->cards = $reader->getCards();
@@ -18,6 +29,11 @@ class Trip implements Iterator, Countable
         TripSorter::sort($this->cards);
     }
 
+    /**
+     * Returns an array of boarding cards in the sorted order.
+     *
+     * @return array
+     */
     public function getCards()
     {
         return $this->cards;

@@ -7,6 +7,12 @@ use PropertyFinder\BoardingCards\BoardingCard;
 class TripSorter
 {
 
+    /**
+     * Sorts the $cards to create an array
+     * of legs for one single journey.
+     *
+     * @param array $cards
+     */
     public static function sort(array &$cards)
     {
         if (!$cards) {
