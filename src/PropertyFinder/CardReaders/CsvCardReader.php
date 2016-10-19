@@ -10,11 +10,26 @@ class CsvCardReader implements CardReader
 
     protected $file;
 
+    /**
+     * CsvCardReader constructor.
+     *
+     * Creates a reader for generating Boarding Cards from
+     * a CSV file input.
+     *
+     * @param string $file Path to the CSV file input containing stack
+     *                     of boarding cards for a single journey.
+     */
     public function __construct($file)
     {
         $this->file = $file;
     }
 
+    /**
+     * Returns an array of boarding cards parsed from
+     * the CSV input file.
+     *
+     * @return array
+     */
     public function getCards()
     {
         $cards = [];
@@ -31,6 +46,11 @@ class CsvCardReader implements CardReader
         return $cards;
     }
 
+    /**
+     * Returns the path of the CSV file.
+     *
+     * @return string
+     */
     public function getFile()
     {
         return $this->file;
